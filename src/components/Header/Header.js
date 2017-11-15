@@ -1,12 +1,14 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import classNames from 'classnames/bind';
 import styles from './Header.css';
 
 const Header = () => {
+  const cx = classNames.bind(styles);
   return (
-    <div className={styles.header}>
-      <NavLink exact to="/" className={styles.item} activeClassName={styles.active}>홈</NavLink>
-      <NavLink to="/about" className={styles.item} activeClassName={styles.active}>소개</NavLink>
+    <div className={cx('header')}>
+      <NavLink exact to="/" className={cx('item')} activeClassName={cx('active')}>홈</NavLink>
+      <NavLink to="/about" className={cx('item')} activeClassName={cx('active')}>소개</NavLink>
     </div>
   );
 };
