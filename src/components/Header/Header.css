@@ -17,9 +17,11 @@
 
 .item:hover {
     background: #748ffc;
+    text-decoration: none;
 }
 
 .item:active, .item.active {
     background: white;
     color: #5c7cfa;
+    text-decoration: none;
 }

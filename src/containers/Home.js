@@ -2,10 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {
-  Container, Row, Col, Card, CardImg, CardText, CardBody,
-  CardTitle
-} from 'reactstrap';
+import {Container, Row, Col, Card, CardImg, CardText, CardBody, CardTitle} from 'reactstrap';
 
 import * as reviewsActions from '../actions/reviews';
 
