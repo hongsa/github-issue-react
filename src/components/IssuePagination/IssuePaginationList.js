@@ -11,7 +11,7 @@ class IssuePaginationList extends React.Component {
   }
 
   render() {
-    const {currentPage, pageRange, pageSize, onClickPageChange, onClickPageRangeChange, totalPage} = this.props;
+    const {currentPage, pageRange, pageSize, onClickChangePage, onClickChangePageRange, totalPage} = this.props;
     const numberArray = [...Array(10).keys()].map(i => i + 1);
     const mapToComponents = () => {
       return numberArray.map((targetPage) => {
@@ -26,7 +26,7 @@ class IssuePaginationList extends React.Component {
               targetPage={targetPage}
               pageRange={pageRange}
               pageSize={pageSize}
-              onClickPageChange={onClickPageChange}
+              onClickChangePage={onClickChangePage}
             />
           )
         }
@@ -38,7 +38,7 @@ class IssuePaginationList extends React.Component {
         <PaginationItem disabled={pageRange === 0}>
           <PaginationLink
             previous
-            onClick={() => onClickPageRangeChange('prev')}>
+            onClick={() => onClickChangePageRange('prev')}>
           </PaginationLink>
         </PaginationItem>
         {mapToComponents()}
@@ -46,7 +46,7 @@ class IssuePaginationList extends React.Component {
           disabled={(pageRange + 1) * pageSize >= totalPage}>
           <PaginationLink
             next
-            onClick={() => onClickPageRangeChange('next')}>
+            onClick={() => onClickChangePageRange('next')}>
           </PaginationLink>
         </PaginationItem>
       </Pagination>
@@ -59,8 +59,8 @@ IssuePaginationList.propTypes = {
   pageRange: PropTypes.number,
   pageSize: PropTypes.number,
   totalPage: PropTypes.number,
-  onClickPageChange: PropTypes.func,
-  onClickPageRangeChange: PropTypes.func
+  onClickChangePage: PropTypes.func,
+  onClickChangePageRange: PropTypes.func
 };
 
 export default IssuePaginationList

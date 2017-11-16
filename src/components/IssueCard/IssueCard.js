@@ -8,14 +8,47 @@ import Moment from 'react-moment';
 import styles from './IssueCard.css';
 import Labels from './Labels';
 
-const IssueCard = ({title, number, commentCount, userName, created, labels}) => {
+const IssueCard = ({title, number, commentCount, userName, created, labels, state}) => {
   const cx = classNames.bind(styles);
+  const currentState = () => {
+    if (state === 'open') {
+      return (
+        <div>
+          #{number}&nbsp;{state}&nbsp;
+          <Moment fromNow>{created}</Moment>
+          &nbsp;by&nbsp;{userName}
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          #{number}&nbsp;by&nbsp;{userName}
+          &nbsp;was&nbsp;{state}&nbsp;
+          <Moment fromNow>{created}</Moment>
+        </div>
+      )
+    }
+  };
+
+  const currentStateIcon = () => {
+    if (state === 'open') {
+      return (
+        <i className="fa fa-check-circle-o fa-lg" style={{color: '#28a745', padding: '0 5px 0 5px'}} />
+      )
+    } else {
+      return (
+        <i className="fa fa-ban fa-lg" style={{color: '#cb2431', padding: '0 5px 0 5px'}} />
+      )
+    }
+  };
+
   return (
     <Card>
       <CardBody>
         <Row>
           <Col sm="11" className="text-left">
             <Link to={`/issue/${number}`} className={cx('card')}>
+              {currentStateIcon()}
               <span className={cx('title')}>
                 {title}
               </span>
@@ -31,11 +64,7 @@ const IssueCard = ({title, number, commentCount, userName, created, labels}) => 
         </Row>
         <Row className={cx('time')}>
           <Col className="text-left">
-            <div>
-              #{number}&nbsp;opened&nbsp;
-              <Moment fromNow>{created}</Moment>
-              &nbsp;by&nbsp;{userName}
-            </div>
+            {currentState()}
           </Col>
         </Row>
       </CardBody>
@@ -49,7 +78,8 @@ IssueCard.propTypes = {
   commentCount: PropTypes.number,
   userName: PropTypes.string,
   created: PropTypes.string,
-  labels: PropTypes.array
+  labels: PropTypes.array,
+  state: PropTypes.string,
 };
 
 export default IssueCard

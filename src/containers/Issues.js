@@ -42,7 +42,7 @@ class Issues extends Component {
     }
   }
 
-  onClickPageChange = (page) => {
+  onClickChangePage = (page) => {
     this.setState({
       page: page,
       loading: true
@@ -53,7 +53,7 @@ class Issues extends Component {
     })
   };
 
-  onClickPageRangeChange = (name) => {
+  onClickChangePageRange = (name) => {
     const prevPageNumber = ((this.state.pageRange) * this.state.pageSize);
     const nextPageNumber = ((this.state.pageRange + 1) * this.state.pageSize) + 1;
     this.setState({
@@ -67,6 +67,18 @@ class Issues extends Component {
     })
   };
 
+  onClickChangeState = (state) => {
+    this.setState({
+      state: state,
+      loading: true
+    }, () => {
+      this.fetchIssues().then(() => {
+        this.setState({loading: false});
+      })
+    })
+  };
+
+
   async fetchIssues() {
     const {state, sort, direction, page} = this.state;
     return await this.props.actions.fetchIssues(state, sort, direction, page);
@@ -79,7 +91,11 @@ class Issues extends Component {
           <Container>
             <Row className="justify-content-center">
               <Col>
-                <IssueCardList issues={this.props.issues.issues} />
+                <IssueCardList
+                  issues={this.props.issues.issues}
+                  onClickChangeState={this.onClickChangeState}
+                  state={this.state.state}
+                />
               </Col>
             </Row>
             <Row className="justify-content-center">
@@ -88,8 +104,8 @@ class Issues extends Component {
                 pageRange={this.state.pageRange}
                 pageSize={this.state.pageSize}
                 totalPage={this.props.issues.totalPage}
-                onClickPageChange={this.onClickPageChange}
-                onClickPageRangeChange={this.onClickPageRangeChange}
+                onClickChangePage={this.onClickChangePage}
+                onClickChangePageRange={this.onClickChangePageRange}
               />
             </Row>
           </Container>
