@@ -78,7 +78,7 @@ class Issues extends Component {
         <div className="flex-row align-items-center">
           <Container>
             <Row className="justify-content-center">
-              <Col md="10">
+              <Col>
                 <IssueCardList issues={this.props.issues.issues} />
               </Col>
             </Row>

@@ -23,7 +23,10 @@ const IssueCard = ({title, number, commentCount, userName, created, labels}) => 
             <Labels labels={labels} />
           </Col>
           <Col sm="1" className="text-right">
-            <div className={cx('comment')}>{commentCount}</div>
+            <div className={cx('comment')}>
+              <i className="fa fa-comment-o fa-lg" />&nbsp;
+              {commentCount}
+            </div>
           </Col>
         </Row>
         <Row className={cx('time')}>
