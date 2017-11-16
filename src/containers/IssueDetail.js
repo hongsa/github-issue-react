@@ -5,8 +5,7 @@ import {bindActionCreators} from 'redux';
 import {Container, Row} from 'reactstrap';
 
 import * as issueDetailActions from '../actions/issueDetail';
-import IssueDetailItem from '../components/IssueDetailItem';
-import CommentCardList from '../components/CommentCardList';
+import {IssueDetailItem, CommentCardList, Spinner} from '../components';
 
 class IssueDetail extends Component {
   constructor(props) {
@@ -36,18 +35,18 @@ class IssueDetail extends Component {
 
   render() {
     return (
-    this.state.loading ? <div>로딩중</div> :
-      <Container>
-        <Row>
-          <IssueDetailItem data={this.props.issueDetail.issue} />
-        </Row>
-        <div>
-          -------------------------------------------------------------
-        </div>
-        <Row>
-          <CommentCardList data={this.props.issueDetail.comments} />
-        </Row>
-      </Container>
+      this.state.loading ? <Spinner /> :
+        <Container>
+          <Row>
+            <IssueDetailItem data={this.props.issueDetail.issue} />
+          </Row>
+          <div>
+            -------------------------------------------------------------
+          </div>
+          <Row>
+            <CommentCardList data={this.props.issueDetail.comments} />
+          </Row>
+        </Container>
     );
   }
 }

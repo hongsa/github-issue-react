@@ -54,6 +54,13 @@ class IssuePaginationList extends React.Component {
   }
 }
 
-IssuePaginationList.propTypes = {};
+IssuePaginationList.propTypes = {
+  currentPage: PropTypes.number,
+  pageRange: PropTypes.number,
+  pageSize: PropTypes.number,
+  totalPage: PropTypes.number,
+  onClickPageChange: PropTypes.func,
+  onClickPageRangeChange: PropTypes.func
+};
 
 export default IssuePaginationList

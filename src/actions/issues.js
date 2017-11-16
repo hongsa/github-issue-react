@@ -4,7 +4,7 @@ import * as api from '../lib/api';
 
 function getTotalPage(link) {
   if (link.includes('rel="last"')) {
-    return link.split(',')[1].match(/page=(\d+).*$/)[1]
+    return parseInt(link.split(',')[1].match(/page=(\d+).*$/)[1], 10)
   } else {
     return false
   }

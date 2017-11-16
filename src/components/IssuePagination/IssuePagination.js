@@ -13,7 +13,11 @@ const IssuePagination = ({currentPage, targetPage, pageRange, pageSize, onClickP
 };
 
 IssuePagination.propTypes = {
-
+  currentPage: PropTypes.number,
+  targetPage: PropTypes.number,
+  pageRange: PropTypes.number,
+  pageSize: PropTypes.number,
+  onClickPageChange: PropTypes.func,
 };
 
 export default IssuePagination

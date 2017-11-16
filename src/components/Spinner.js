@@ -1,4 +1,5 @@
 import React from 'react';
+import {PulseLoader} from 'react-spinners';
 
 const style = {
   position: 'fixed',
@@ -10,10 +11,10 @@ const style = {
 const Spinner = () => {
   return (
     <div style={style}>
-      <div className="spinner">
-        <div className="dot1"></div>
-        <div className="dot2"></div>
-      </div>
+      <PulseLoader
+        color={'#0366d6'}
+        size={50}
+      />
     </div>
   );
 };

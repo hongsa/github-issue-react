@@ -2,11 +2,10 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {Container, Row} from 'reactstrap';
+import {Container, Col, Row} from 'reactstrap';
 
 import * as issuesActions from '../actions/issues';
-import IssueCardList from '../components/IssueCardList';
-import IssuePaginationList from '../components/IssuePaginationList';
+import {IssueCardList, IssuePaginationList, Spinner} from '../components';
 
 class Issues extends Component {
   constructor(props) {
@@ -75,23 +74,26 @@ class Issues extends Component {
 
   render() {
     return (
-      this.state.loading ? <div>로딩중</div> :
-        <Container>
-          <Row>
-            <IssueCardList issues={this.props.issues.issues} />
-          </Row>
-
-          <Row>
-            <IssuePaginationList
-              currentPage={this.state.page}
-              pageRange={this.state.pageRange}
-              pageSize={this.state.pageSize}
-              totalPage={this.props.issues.totalPage}
-              onClickPageChange={this.onClickPageChange}
-              onClickPageRangeChange={this.onClickPageRangeChange}
-            />
-          </Row>
-        </Container>
+      this.state.loading ? <Spinner /> :
+        <div className="flex-row align-items-center">
+          <Container>
+            <Row className="justify-content-center">
+              <Col md="10">
+                <IssueCardList issues={this.props.issues.issues} />
+              </Col>
+            </Row>
+            <Row className="justify-content-center">
+              <IssuePaginationList
+                currentPage={this.state.page}
+                pageRange={this.state.pageRange}
+                pageSize={this.state.pageSize}
+                totalPage={this.props.issues.totalPage}
+                onClickPageChange={this.onClickPageChange}
+                onClickPageRangeChange={this.onClickPageRangeChange}
+              />
+            </Row>
+          </Container>
+        </div>
     );
   }
 }
