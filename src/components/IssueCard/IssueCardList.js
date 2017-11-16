@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import {Card, CardHeader, Button} from 'reactstrap';
+import {Card, CardHeader, Button, Row, Col, Input} from 'reactstrap';
 
 import IssueCard from './IssueCard';
 import styles from './IssueCard.css';
@@ -26,37 +26,72 @@ class IssueCardList extends React.Component {
             created={issue.created_at}
             labels={issue.labels}
             state={issue.state}
+            closed={issue.closed_at}
           />
         )
       });
     };
     const cx = classNames.bind(styles);
-    const {onClickChangeState, issues, state} = this.props;
+    const {issues, state, sort, direction, onClickChangeState, onClickChangeDirection, onChangeSort}
+      = this.props;
     return (
       <div className={cx('box')}>
         <Card>
           <CardHeader>
-            <Button
-              active={state === 'open'}
-              outline
-              color="secondary"
-              onClick={() => onClickChangeState('open')}>
-              Open
-            </Button>
-            <Button
-              active={state === 'closed'}
-              outline
-              color="secondary"
-              onClick={() => onClickChangeState('closed')}>
-              Closed
-            </Button>
-            <Button
-              active={state === 'all'}
-              outline
-              color="secondary"
-              onClick={() => onClickChangeState('all')}>
-              All
-            </Button>
+            <Row>
+              <Col sm="8" xs="6">
+                <Button
+                  className={cx('btn-state')}
+                  active={state === 'open'}
+                  outline
+                  color="secondary"
+                  size="sm"
+                  onClick={() => onClickChangeState('open')}>
+                  Open
+                </Button>
+                <Button
+                  className={cx('btn-state')}
+                  active={state === 'closed'}
+                  outline
+                  color="secondary"
+                  size="sm"
+                  onClick={() => onClickChangeState('closed')}>
+                  Closed
+                </Button>
+                <Button
+                  className={cx('btn-state')}
+                  active={state === 'all'}
+                  outline
+                  color="secondary"
+                  size="sm"
+                  onClick={() => onClickChangeState('all')}>
+                  All
+                </Button>
+              </Col>
+              <Col sm="3" xs="4" className="text-right">
+                <Input
+                  type="select"
+                  size="sm"
+                  value={sort}
+                  onChange={onChangeSort}
+                >
+                  <option value="created">created</option>
+                  <option value="updated">updated</option>
+                  <option value="comments">comments</option>
+                </Input>
+              </Col>
+              <Col sm="1" xs="2" className="text-left">
+                <Button
+                  color="primary"
+                  size="sm"
+                  onClick={onClickChangeDirection}
+                >
+                  {direction === 'desc' ?
+                    <i className="fa fa-arrow-down" />
+                    : <i className="fa fa-arrow-up" /> }
+                </Button>
+              </Col>
+            </Row>
           </CardHeader>
         </Card>
         {mapToComponents(issues)}

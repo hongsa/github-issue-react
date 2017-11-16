@@ -8,7 +8,7 @@ import Moment from 'react-moment';
 import styles from './IssueCard.css';
 import Labels from './Labels';
 
-const IssueCard = ({title, number, commentCount, userName, created, labels, state}) => {
+const IssueCard = ({title, number, commentCount, userName, created, labels, state, closed}) => {
   const cx = classNames.bind(styles);
   const currentState = () => {
     if (state === 'open') {
@@ -24,7 +24,7 @@ const IssueCard = ({title, number, commentCount, userName, created, labels, stat
         <div>
           #{number}&nbsp;by&nbsp;{userName}
           &nbsp;was&nbsp;{state}&nbsp;
-          <Moment fromNow>{created}</Moment>
+          <Moment fromNow>{closed}</Moment>
         </div>
       )
     }
@@ -46,7 +46,7 @@ const IssueCard = ({title, number, commentCount, userName, created, labels, stat
     <Card>
       <CardBody>
         <Row>
-          <Col sm="11" className="text-left">
+          <Col sm="10" xs="9" className="text-left">
             <Link to={`/issue/${number}`} className={cx('card')}>
               {currentStateIcon()}
               <span className={cx('title')}>
@@ -55,10 +55,9 @@ const IssueCard = ({title, number, commentCount, userName, created, labels, stat
             </Link>
             <Labels labels={labels} />
           </Col>
-          <Col sm="1" className="text-right">
+          <Col sm="2" xs="3" className="text-right">
             <div className={cx('comment')}>
-              <i className="fa fa-comment-o fa-lg" />&nbsp;
-              {commentCount}
+              <i className="fa fa-comment-o fa-lg" />&nbsp;{commentCount}
             </div>
           </Col>
         </Row>
@@ -80,6 +79,7 @@ IssueCard.propTypes = {
   created: PropTypes.string,
   labels: PropTypes.array,
   state: PropTypes.string,
+  closed: PropTypes.string,
 };
 
 export default IssueCard

@@ -69,6 +69,8 @@ class Issues extends Component {
 
   onClickChangeState = (state) => {
     this.setState({
+      page: 1,
+      pageRange: 0,
       state: state,
       loading: true
     }, () => {
@@ -78,6 +80,31 @@ class Issues extends Component {
     })
   };
 
+  onChangeSort = (e) => {
+    this.setState({
+      page: 1,
+      pageRange: 0,
+      sort: e.target.value,
+      loading: true
+    }, () => {
+      this.fetchIssues().then(() => {
+        this.setState({loading: false});
+      })
+    })
+  };
+
+  onClickChangeDirection = () => {
+    this.setState({
+      page: 1,
+      pageRange: 0,
+      direction: this.state.direction === 'desc' ? 'asc' : 'desc',
+      loading: true
+    }, () => {
+      this.fetchIssues().then(() => {
+        this.setState({loading: false});
+      })
+    })
+  };
 
   async fetchIssues() {
     const {state, sort, direction, page} = this.state;
@@ -92,9 +119,13 @@ class Issues extends Component {
             <Row className="justify-content-center">
               <Col>
                 <IssueCardList
+                  state={this.state.state}
+                  sort={this.state.sort}
+                  direction={this.state.direction}
                   issues={this.props.issues.issues}
                   onClickChangeState={this.onClickChangeState}
-                  state={this.state.state}
+                  onClickChangeDirection={this.onClickChangeDirection}
+                  onChangeSort={this.onChangeSort}
                 />
               </Col>
             </Row>

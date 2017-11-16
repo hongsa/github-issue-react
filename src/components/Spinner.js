@@ -13,7 +13,7 @@ const Spinner = () => {
     <div style={style}>
       <PulseLoader
         color={'#0366d6'}
-        size={50}
+        size={40}
       />
     </div>
   );
