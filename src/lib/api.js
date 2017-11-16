@@ -1,5 +1,7 @@
 // localhost
-export const BACKEND_URL = 'http://localhost:5000/api';
+export const BACKEND_URL = 'https://api.github.com/repos/facebook/react/issues';
+
+export const PER_PAGE = 15;
 
 // prd
 // export const BACKEND_URL = 'http://52.79.125.39:5000/api';

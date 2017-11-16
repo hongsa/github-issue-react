@@ -1,10 +1,10 @@
-import Home from './Home';
+import Issues from './Issues';
 import About from './About';
 import NoMatch from './NoMatch';
 
 
 export {
-  Home,
+  Issues,
   About,
   NoMatch
 };

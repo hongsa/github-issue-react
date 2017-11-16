@@ -1,17 +1,6 @@
 export default {
-  user: {
-    info: {},
-    tags: [],
-  },
-  reviews: {
-    reviews: [],
-    topWebtoons: [],
-    filters: {
-      order: 'created',
-      gender: 'all',
-      age: 'all',
-      rating: 'all',
-      tags: [],
-    },
+  issues: {
+    issues: [],
+    totalPage: 0
   },
 };

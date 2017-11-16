@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import reviews from './reviews';
+import issues from './issues';
 
 const rootReducer = combineReducers({
-  reviews,
+  issues,
 });
 
 export default rootReducer;
