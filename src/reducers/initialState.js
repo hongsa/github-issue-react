@@ -3,4 +3,8 @@ export default {
     issues: [],
     totalPage: 0
   },
+  issueDetail: {
+    issue: {},
+    comments: []
+  }
 };

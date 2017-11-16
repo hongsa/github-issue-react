@@ -4,7 +4,7 @@ import {Provider} from 'react-redux';
 
 import configureStore from './store/configureStore';
 import {Header} from './components';
-import {Issues, About, NoMatch} from './containers';
+import {Issues, IssueDetail, NoMatch} from './containers';
 
 
 const store = configureStore();
@@ -17,7 +17,7 @@ const App = () => {
           <Header />
           <Switch>
             <Route exact path="/" component={Issues} />
-            <Route path="/about" component={About} />
+            <Route path="/issue/:number" component={IssueDetail} />
             <Route component={NoMatch} />
           </Switch>
         </div>

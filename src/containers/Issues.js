@@ -75,22 +75,23 @@ class Issues extends Component {
 
   render() {
     return (
-      <Container>
-        <Row>
-          <IssueCardList issues={this.props.issues.issues} />
-        </Row>
+      this.state.loading ? <div>로딩중</div> :
+        <Container>
+          <Row>
+            <IssueCardList issues={this.props.issues.issues} />
+          </Row>
 
-        <Row>
-          <IssuePaginationList
-            currentPage={this.state.page}
-            pageRange={this.state.pageRange}
-            pageSize={this.state.pageSize}
-            totalPage={this.props.issues.totalPage}
-            onClickPageChange={this.onClickPageChange}
-            onClickPageRangeChange={this.onClickPageRangeChange}
-          />
-        </Row>
-      </Container>
+          <Row>
+            <IssuePaginationList
+              currentPage={this.state.page}
+              pageRange={this.state.pageRange}
+              pageSize={this.state.pageSize}
+              totalPage={this.props.issues.totalPage}
+              onClickPageChange={this.onClickPageChange}
+              onClickPageRangeChange={this.onClickPageRangeChange}
+            />
+          </Row>
+        </Container>
     );
   }
 }

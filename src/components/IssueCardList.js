@@ -17,6 +17,7 @@ class IssueCardList extends React.Component {
           <IssueCard
             key={issue.id}
             title={issue.title}
+            number={issue.number}
           />
         )
       });
