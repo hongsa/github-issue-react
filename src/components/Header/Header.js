@@ -13,8 +13,7 @@ const Header = () => {
       <Row className="justify-content-center">
         <Col>
           <div className={cx('header')}>
-            <NavLink exact to="/" className={cx('item')} activeClassName={cx('active')}>홈</NavLink>
-            <NavLink exact to="/about" className={cx('item')} activeClassName={cx('active')}>404</NavLink>
+            <NavLink exact to="/" className={cx('item')}>Home</NavLink>
           </div>
         </Col>
       </Row>

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {Container, Col, Row} from 'reactstrap';
+import {Container, Row} from 'reactstrap';
 
 import * as issuesActions from '../actions/issues';
 import {IssueCardList, IssuePaginationList, Spinner} from '../components';
@@ -114,21 +114,17 @@ class Issues extends Component {
   render() {
     return (
       this.state.loading ? <Spinner /> :
-        <div className="flex-row align-items-center">
+        <div>
           <Container>
-            <Row className="justify-content-center">
-              <Col>
-                <IssueCardList
-                  state={this.state.state}
-                  sort={this.state.sort}
-                  direction={this.state.direction}
-                  issues={this.props.issues.issues}
-                  onClickChangeState={this.onClickChangeState}
-                  onClickChangeDirection={this.onClickChangeDirection}
-                  onChangeSort={this.onChangeSort}
-                />
-              </Col>
-            </Row>
+            <IssueCardList
+              state={this.state.state}
+              sort={this.state.sort}
+              direction={this.state.direction}
+              issues={this.props.issues.issues}
+              onClickChangeState={this.onClickChangeState}
+              onClickChangeDirection={this.onClickChangeDirection}
+              onChangeSort={this.onChangeSort}
+            />
             <Row className="justify-content-center">
               <IssuePaginationList
                 currentPage={this.state.page}

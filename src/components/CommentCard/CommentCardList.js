@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {ListGroup} from 'reactstrap';
 import CommentCard from './CommentCard';
 
 class CommentCardList extends React.Component {
@@ -26,12 +25,14 @@ class CommentCardList extends React.Component {
 
     return (
       <div>
-        <ListGroup>{mapToComponents(this.props.data)}</ListGroup>
+        {mapToComponents(this.props.comments)}
       </div>
     );
   }
 }
 
-CommentCardList.propTypes = {};
+CommentCardList.propTypes = {
+  comments: PropTypes.array
+};
 
 export default CommentCardList

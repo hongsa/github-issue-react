@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Button, Row, Col} from 'reactstrap';
+import {Button} from 'reactstrap';
 import classNames from 'classnames/bind';
 import Moment from 'react-moment';
 
@@ -30,23 +30,19 @@ const IssueDetailItem = ({issue}) => {
   };
 
   return (
-    <div>
-      <Col>
-        <h2>
-          <span className={cx('title')}>{title}</span>&nbsp;&nbsp;
-          <span className={cx('number')}>#{number}</span>
-        </h2>
-        <div className={cx('state-box')}>
-        <span>
-          {currentStateIcon()}
-          {user.login}&nbsp;opened&nbsp;this issue&nbsp;
-          <Moment fromNow>{created_at}</Moment>
-        </span>
+    <div className={cx('box')}>
+      <h2>
+        <span className={cx('title')}>{title}</span>&nbsp;&nbsp;
+        <span className={cx('number')}>#{number}</span>
+      </h2>
+      <div className={cx('state-box')}>
           <span>
-          &nbsp;·&nbsp;{comments}&nbsp;comments
-        </span>
-        </div>
-      </Col>
+            {currentStateIcon()}
+            {user.login}&nbsp;opened&nbsp;this issue&nbsp;
+            <Moment fromNow>{created_at}</Moment>
+          </span>
+        <span>&nbsp;·&nbsp;{comments}&nbsp;comments</span>
+      </div>
       <CommentCard
         body={body}
         created={created_at}
