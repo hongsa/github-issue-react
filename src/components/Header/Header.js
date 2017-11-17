@@ -10,7 +10,7 @@ const Header = () => {
   return (
     <Container>
       <div className={cx('header')}>
-        <NavLink exact to="/" className={cx('item')}>Home</NavLink>
+        <NavLink exact to="/" className={cx('item')}>facebook react issues</NavLink>
       </div>
     </Container>
   );

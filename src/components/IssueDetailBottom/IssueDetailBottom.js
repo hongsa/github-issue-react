@@ -63,7 +63,7 @@ class CommentCardList extends React.Component {
           <div className={cx('item-box')}>
             <div className={cx('item')}>Labels</div>
             <div className={cx('item')}>
-              {LabelList()}
+              {labels.length !== 0 ? LabelList() : 'None yet'}
             </div>
           </div>
           <div className={cx('item-box')}>
@@ -77,6 +77,7 @@ class CommentCardList extends React.Component {
           <div className={cx('item-box')}>
             <div className={cx('item')}>Notifications</div>
             <Button
+              className={cx('item')}
               outline
               color="secondary"
               size="sm">Subscribe</Button>

@@ -12,11 +12,11 @@ class Issues extends Component {
     super(props);
     this.state = {
       loading: true,
-      state: 'open',
-      sort: 'created',
-      direction: 'desc',
-      page: 1,
-      pageRange: 0,
+      state: this.props.issues.filters.state,
+      sort: this.props.issues.filters.sort,
+      direction: this.props.issues.filters.direction,
+      page: this.props.issues.filters.page,
+      pageRange: this.props.issues.filters.pageRange,
       pageSize: 10
     };
   }
@@ -107,8 +107,14 @@ class Issues extends Component {
   };
 
   async fetchIssues() {
-    const {state, sort, direction, page} = this.state;
-    return await this.props.actions.fetchIssues(state, sort, direction, page);
+    const selectedFilter = {
+      state: this.state.state,
+      sort: this.state.sort,
+      direction: this.state.direction,
+      page: this.state.page,
+      pageRange: this.state.pageRange
+    };
+    return await this.props.actions.fetchIssues(selectedFilter);
   }
 
   render() {
