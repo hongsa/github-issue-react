@@ -8,8 +8,8 @@ import Moment from 'react-moment';
 import styles from './IssueCard.css';
 import Labels from './Labels';
 
+const cx = classNames.bind(styles);
 const IssueCard = ({title, number, commentCount, userName, created, labels, state, closed}) => {
-  const cx = classNames.bind(styles);
   const currentStateText = () => {
     if (state === 'open') {
       return (

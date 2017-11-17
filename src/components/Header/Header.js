@@ -5,8 +5,8 @@ import {Container, Col, Row} from 'reactstrap';
 
 import styles from './Header.css';
 
+const cx = classNames.bind(styles);
 const Header = () => {
-  const cx = classNames.bind(styles);
   return (
   <div className="flex-row align-items-center">
     <Container>

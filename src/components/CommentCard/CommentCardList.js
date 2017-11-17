@@ -17,6 +17,8 @@ class CommentCardList extends React.Component {
           <CommentCard
             key={comment.id}
             body={comment.body}
+            created={comment.created_at}
+            user={comment.user}
           />
         )
       });
@@ -30,7 +32,6 @@ class CommentCardList extends React.Component {
   }
 }
 
-CommentCardList.propTypes = {
-};
+CommentCardList.propTypes = {};
 
 export default CommentCardList

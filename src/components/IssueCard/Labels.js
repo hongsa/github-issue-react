@@ -4,8 +4,8 @@ import classNames from 'classnames/bind';
 
 import styles from './IssueCard.css';
 
+const cx = classNames.bind(styles);
 const Labels = ({labels}) => {
-  const cx = classNames.bind(styles);
   const mapToComponents = labels.map((label) => {
     return (
       <span

@@ -1,0 +1,25 @@
+.title {
+    font-weight: normal;
+}
+
+.number {
+    color: #a3aab1;
+}
+
+.state-box {
+    color: #586069;
+    font-size: 16px;
+    padding-top: 4px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e6ebf1;
+    margin-bottom: 15px;
+}
+
+.state-icon {
+    color: white;
+    padding: 2px;
+}
+
+.state-btn {
+    margin: 5px;
+}

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {Container, Row} from 'reactstrap';
+import {Container, Row, Col} from 'reactstrap';
 
 import * as issueDetailActions from '../actions/issueDetail';
 import {IssueDetailItem, CommentCardList, Spinner} from '../components';
@@ -36,17 +36,16 @@ class IssueDetail extends Component {
   render() {
     return (
       this.state.loading ? <Spinner /> :
-        <Container>
-          <Row>
-            <IssueDetailItem data={this.props.issueDetail.issue} />
-          </Row>
-          <div>
-            -------------------------------------------------------------
-          </div>
-          <Row>
-            <CommentCardList data={this.props.issueDetail.comments} />
-          </Row>
-        </Container>
+        <div className="flex-row align-items-center">
+          <Container>
+            <Row className="justify-content-center">
+              <IssueDetailItem issue={this.props.issueDetail.issue} />
+            </Row>
+            <Row className="justify-content-center">
+              <CommentCardList data={this.props.issueDetail.comments} />
+            </Row>
+          </Container>
+        </div>
     );
   }
 }
