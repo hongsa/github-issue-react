@@ -26,9 +26,10 @@
     font-size: 13px;
 }
 
-.time {
+.state-text {
     color: #586069;
     font-size: 13px;
+    padding: 3px;
 }
 
 .label-box {

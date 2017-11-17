@@ -10,7 +10,7 @@ import Labels from './Labels';
 
 const IssueCard = ({title, number, commentCount, userName, created, labels, state, closed}) => {
   const cx = classNames.bind(styles);
-  const currentState = () => {
+  const currentStateText = () => {
     if (state === 'open') {
       return (
         <div>
@@ -33,11 +33,11 @@ const IssueCard = ({title, number, commentCount, userName, created, labels, stat
   const currentStateIcon = () => {
     if (state === 'open') {
       return (
-        <i className="fa fa-check-circle-o fa-lg" style={{color: '#28a745', padding: '0 5px 0 5px'}} />
+        <i className="fa fa-check-circle-o fa-lg" style={{color: '#28a745', padding: '3px'}} />
       )
     } else {
       return (
-        <i className="fa fa-ban fa-lg" style={{color: '#cb2431', padding: '0 5px 0 5px'}} />
+        <i className="fa fa-ban fa-lg" style={{color: '#cb2431', padding: '3px'}} />
       )
     }
   };
@@ -61,9 +61,9 @@ const IssueCard = ({title, number, commentCount, userName, created, labels, stat
             </div>
           </Col>
         </Row>
-        <Row className={cx('time')}>
+        <Row className={cx('state-text')}>
           <Col className="text-left">
-            {currentState()}
+            {currentStateText()}
           </Col>
         </Row>
       </CardBody>
