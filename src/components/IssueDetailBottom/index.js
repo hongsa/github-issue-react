@@ -1,0 +1,1 @@
+export { IssueDetailBottom } from './IssueDetailBottom';

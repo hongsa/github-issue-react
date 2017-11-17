@@ -5,7 +5,7 @@ import {bindActionCreators} from 'redux';
 import {Container} from 'reactstrap';
 
 import * as issueDetailActions from '../actions/issueDetail';
-import {IssueDetailItem, CommentCardList, Spinner} from '../components';
+import {IssueDetailTop, IssueDetailBottom, Spinner} from '../components';
 
 class IssueDetail extends Component {
   constructor(props) {
@@ -71,8 +71,10 @@ class IssueDetail extends Component {
       this.state.loading ? <Spinner /> :
         <div>
           <Container>
-            <IssueDetailItem issue={this.props.issueDetail.issue} />
-            <CommentCardList comments={this.props.issueDetail.comments} />
+            <IssueDetailTop issue={this.props.issueDetail.issue} />
+            <IssueDetailBottom
+              issue={this.props.issueDetail.issue}
+              comments={this.props.issueDetail.comments} />
           </Container>
         </div>
     );

@@ -1,16 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Button} from 'reactstrap';
+import {Button, Row, Col} from 'reactstrap';
 import classNames from 'classnames/bind';
 import Moment from 'react-moment';
 
-import styles from './IssueDetailItem.css';
-import CommentCard from '../CommentCard/CommentCard';
+import styles from './IssueDetailTop.css';
 
 
 const cx = classNames.bind(styles);
 const IssueDetailItem = ({issue}) => {
-  const {title, body, number, state, created_at, user, comments} = issue;
+  const {title, number, state, created_at, user, comments} = issue;
   const currentStateIcon = () => {
     if (state === 'open') {
       return (
@@ -31,10 +30,18 @@ const IssueDetailItem = ({issue}) => {
 
   return (
     <div className={cx('box')}>
-      <h2>
-        <span className={cx('title')}>{title}</span>&nbsp;&nbsp;
-        <span className={cx('number')}>#{number}</span>
-      </h2>
+      <Row>
+        <Col sm="10">
+          <span className={cx('title')}>{title}</span>&nbsp;&nbsp;
+          <span className={cx('number')}>#{number}</span>
+        </Col>
+        <Col sm="2" className="text-right">
+          <Button
+            className={cx('issue-btn')}
+            color="success"
+            size="sm">New issue</Button>
+        </Col>
+      </Row>
       <div className={cx('state-box')}>
           <span>
             {currentStateIcon()}
@@ -43,11 +50,6 @@ const IssueDetailItem = ({issue}) => {
           </span>
         <span>&nbsp;·&nbsp;{comments}&nbsp;comments</span>
       </div>
-      <CommentCard
-        body={body}
-        created={created_at}
-        user={user}
-      />
     </div>
   )
 };

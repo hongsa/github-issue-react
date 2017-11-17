@@ -5,7 +5,7 @@ import Moment from 'react-moment';
 import classNames from 'classnames/bind';
 import ReactMarkdown from 'react-markdown';
 
-import styles from './CommentCard.css';
+import styles from './IssueDetailBottom.css';
 
 const cx = classNames.bind(styles);
 const CommentCard = ({body, created, user}) => {
