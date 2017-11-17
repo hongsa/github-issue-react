@@ -5,6 +5,7 @@ export default {
   },
   issueDetail: {
     issue: {},
-    comments: []
+    comments: [],
+    commentsTotalPage: 0
   }
 };

@@ -12,6 +12,8 @@ class IssueDetail extends Component {
     super(props);
     this.state = {
       loading: true,
+      commentLoading: true,
+      page: 1
     };
   }
 
@@ -23,6 +25,36 @@ class IssueDetail extends Component {
     })
   }
 
+  componentWillReceiveProps(nextProps) {
+
+    // 코멘트 페이지 마지막 시
+    if (nextProps.issueDetail.commentLast) {
+      this.setState({
+        commentLoading: false,
+        commentLast: nextProps.issueDetail.commentLast || false
+      });
+    }
+
+    // 코멘트 더 불러오기
+    if (!nextProps.issueDetail.commentLast && nextProps.issueDetail.commentsTotalPage > 1) {
+      this.setState({
+        commentLoading: true,
+        page: this.state.page + 1
+      }, () => {
+        this.fetchComments().then(() => {
+          this.setState({commentLoading: false});
+        })
+      });
+    }
+
+    // 코멘트 에러 시 해당 page 다시 호출
+    if (nextProps.issueDetail.commentsFetchDataError) {
+      this.setState({
+        page: nextProps.issueDetail.page,
+      });
+    }
+  }
+
   async fetchIssueDetail() {
     const number = this.props.match.params.number;
     return await this.props.actions.fetchIssueDetail(number);
@@ -30,7 +62,8 @@ class IssueDetail extends Component {
 
   async fetchComments() {
     const number = this.props.match.params.number;
-    return await this.props.actions.fetchComments(number);
+    const {page} = this.state;
+    return await this.props.actions.fetchComments(number, page);
   }
 
   render() {

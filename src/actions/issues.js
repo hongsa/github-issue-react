@@ -2,9 +2,13 @@ import axios from 'axios';
 import * as types from './actionTypes';
 import * as api from '../lib/api';
 
-function getTotalPage(link) {
-  if (link.includes('rel="last"')) {
-    return parseInt(link.split(',')[1].match(/page=(\d+).*$/)[1], 10)
+function getTotalPage(headers) {
+  if(headers.hasOwnProperty('link')) {
+    if (headers.link.includes('rel="last"')) {
+      return parseInt(headers.link.split(',')[1].match(/page=(\d+).*$/)[1], 10)
+    } else {
+      return false
+    }
   } else {
     return false
   }
@@ -14,7 +18,7 @@ export function fetchIssuesSuccess(res) {
   return {
     type: types.FETCH_ISSUES_SUCCESS,
     issues: res.data,
-    totalPage: getTotalPage(res.headers.link)
+    totalPage: getTotalPage(res.headers)
   };
 }
 

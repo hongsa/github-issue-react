@@ -28,27 +28,62 @@ export function fetchIssueDetail(number) {
   };
 }
 
-export function fetchCommentsSuccess(res) {
+function getTotalPage(headers) {
+  if(headers.hasOwnProperty('link')) {
+    if (headers.link.includes('rel="last"')) {
+      return parseInt(headers.link.split(',')[1].match(/page=(\d+).*$/)[1], 10)
+    } else {
+      return false
+    }
+  } else {
+    return false
+  }
+}
+
+export function fetchCommentsFirstSuccess(res) {
   return {
-    type: types.FETCH_COMMENTS_SUCCESS,
+    type: types.FETCH_COMMENTS_FIRST_SUCCESS,
+    comments: res.data,
+    commentsTotalPage: getTotalPage(res.headers)
+  };
+}
+
+export function fetchCommentsContinueSuccess(res) {
+  return {
+    type: types.FETCH_COMMENTS_CONTINUE_SUCCESS,
     comments: res.data,
   };
 }
 
-export function fetchCommentsFailure() {
+export function fetchCommentsLastSuccess() {
   return {
-    type: types.FETCH_COMMENTS_FAILURE
+    type: types.FETCH_COMMENTS_LAST_SUCCESS
   };
 }
 
-export function fetchComments(number) {
+export function fetchCommentsFailure(page) {
+  return {
+    type: types.FETCH_COMMENTS_FAILURE,
+    page: page
+  };
+}
+
+export function fetchComments(number, page) {
   return function (dispatch) {
-    return axios.get(`${api.BACKEND_URL}/${number}/comments`)
+    return axios.get(`${api.BACKEND_URL}/${number}/comments?page=${page}`)
       .then(res => {
-        dispatch(fetchCommentsSuccess(res))
+        if (page === 1) {
+          dispatch(fetchCommentsFirstSuccess(res))
+        } else {
+          if (res.data.length !== 0) {
+            dispatch(fetchCommentsContinueSuccess(res));
+          } else {
+            dispatch(fetchCommentsLastSuccess());
+          }
+        }
       })
       .catch(() => {
-        dispatch(fetchCommentsFailure());
+        dispatch(fetchCommentsFailure(page));
       });
   };
 }
