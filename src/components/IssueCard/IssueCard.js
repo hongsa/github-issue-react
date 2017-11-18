@@ -6,7 +6,7 @@ import classNames from 'classnames/bind';
 import Moment from 'react-moment';
 
 import styles from './IssueCard.css';
-import Labels from './Labels';
+import LabelList from './LabelList';
 
 const cx = classNames.bind(styles);
 const IssueCard = ({title, number, commentCount, userName, created, labels, state, closed}) => {
@@ -53,7 +53,7 @@ const IssueCard = ({title, number, commentCount, userName, created, labels, stat
                 {title}
               </span>
             </Link>
-            <Labels labels={labels} />
+            <LabelList labels={labels} />
           </Col>
           <Col sm="2" xs="3" className="text-right">
             <div className={cx('comment')}>

@@ -5,6 +5,7 @@ import classNames from 'classnames/bind';
 
 import styles from './IssueDetailBottom.css';
 import CommentCard from './CommentCard';
+import LabelList from './LabelList';
 
 class CommentCardList extends React.Component {
 
@@ -30,21 +31,6 @@ class CommentCardList extends React.Component {
       });
     };
 
-    const LabelList = () => {
-      const mapToComponents = labels.map((label) => {
-        return (
-          <div
-            key={label.id}
-            className={cx('label-box')}
-            style={{backgroundColor: '#' + label.color}}
-          >
-            <span>{label.name}</span>
-          </div>
-        )
-      });
-      return mapToComponents
-    };
-
     return (
       <Row>
         <Col sm="9">
@@ -63,7 +49,7 @@ class CommentCardList extends React.Component {
           <div className={cx('item-box')}>
             <div className={cx('item')}>Labels</div>
             <div className={cx('item')}>
-              {labels.length !== 0 ? LabelList() : 'None yet'}
+              {labels.length !== 0 ? <LabelList labels={labels}/> : 'None yet'}
             </div>
           </div>
           <div className={cx('item-box')}>

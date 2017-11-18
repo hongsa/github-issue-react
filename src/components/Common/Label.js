@@ -2,11 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
-import styles from './IssueCard.css';
+import styles from './Common.css';
 
 const cx = classNames.bind(styles);
-const Labels = ({labels}) => {
-  const mapToComponents = labels.map((label) => {
+const Label = ({label}) => {
     return (
       <span
         key={label.id}
@@ -16,12 +15,10 @@ const Labels = ({labels}) => {
         <span>{label.name}</span>
       </span>
     )
-  });
-  return mapToComponents
 };
 
-Labels.propTypes = {
-  labels: PropTypes.array
+Label.propTypes = {
+  label: PropTypes.object
 };
 
-export default Labels
+export default Label

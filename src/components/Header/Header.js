@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import classNames from 'classnames/bind';
-import {Container, Col, Row} from 'reactstrap';
+import {Container} from 'reactstrap';
 
 import styles from './Header.css';
 
