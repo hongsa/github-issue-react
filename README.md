@@ -2,6 +2,7 @@
 
 ### About
 - [create-react-app](https://github.com/facebookincubator/create-react-app)을 기준으로 작성되었습니다.
+- 서비스 배포 주소 : [http://13.124.141.179/](http://13.124.141.179/)
 
 ### 기능
 - 깃헙 이슈 목록
