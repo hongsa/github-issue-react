@@ -10,8 +10,7 @@ import LabelList from './LabelList';
 class CommentCardList extends React.Component {
 
   shouldComponentUpdate(nextProps, nextState) {
-    let update = JSON.stringify(this.props) !== JSON.stringify(nextProps);
-    return update;
+    return JSON.stringify(this.props) !== JSON.stringify(nextProps);
   }
 
   render() {

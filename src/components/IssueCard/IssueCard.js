@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import {Row, Col, Card, CardBody} from 'reactstrap';
 import {Link} from 'react-router-dom'
 import classNames from 'classnames/bind';
-import Moment from 'react-moment';
 
 import styles from './IssueCard.css';
 import LabelList from './LabelList';
+import CommentTime from '../Common/CommentTime';
 
 const cx = classNames.bind(styles);
 const IssueCard = ({title, number, commentCount, userName, created, labels, state, closed}) => {
@@ -14,8 +14,8 @@ const IssueCard = ({title, number, commentCount, userName, created, labels, stat
     if (state === 'open') {
       return (
         <div>
-          #{number}&nbsp;{state}&nbsp;
-          <Moment fromNow>{created}</Moment>
+          #{number}&nbsp;{state}ed&nbsp;
+          <CommentTime time={created} />
           &nbsp;by&nbsp;{userName}
         </div>
       )
@@ -24,7 +24,7 @@ const IssueCard = ({title, number, commentCount, userName, created, labels, stat
         <div>
           #{number}&nbsp;by&nbsp;{userName}
           &nbsp;was&nbsp;{state}&nbsp;
-          <Moment fromNow>{closed}</Moment>
+          <CommentTime time={closed} />
         </div>
       )
     }

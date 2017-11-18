@@ -6,9 +6,7 @@ import configureStore from './store/configureStore';
 import {Header} from './components';
 import {Issues, IssueDetail, NoMatch} from './containers';
 
-
 const store = configureStore();
-
 const App = () => {
   return (
     <Provider store={store}>

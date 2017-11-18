@@ -1,18 +1,8 @@
 import axios from 'axios';
+
 import * as types from './actionTypes';
 import * as api from '../lib/api';
-
-function getTotalPage(headers) {
-  if (headers.hasOwnProperty('link')) {
-    if (headers.link.includes('rel="last"')) {
-      return parseInt(headers.link.split(',')[1].match(/page=(\d+).*$/)[1], 10)
-    } else {
-      return false
-    }
-  } else {
-    return false
-  }
-}
+import * as common from './common';
 
 export function selectIssueFilterSuccess(selectedFilter) {
   return {
@@ -31,7 +21,7 @@ export function fetchIssuesSuccess(res) {
   return {
     type: types.FETCH_ISSUES_SUCCESS,
     issues: res.data,
-    totalPage: getTotalPage(res.headers)
+    totalPage: common.getTotalPage(res.headers)
   };
 }
 

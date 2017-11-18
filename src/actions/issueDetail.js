@@ -1,7 +1,8 @@
 import axios from 'axios';
+
 import * as types from './actionTypes';
 import * as api from '../lib/api';
-
+import * as common from './common';
 
 export function fetchIssueDetailSuccess(res) {
   return {
@@ -28,23 +29,11 @@ export function fetchIssueDetail(number) {
   };
 }
 
-function getTotalPage(headers) {
-  if(headers.hasOwnProperty('link')) {
-    if (headers.link.includes('rel="last"')) {
-      return parseInt(headers.link.split(',')[1].match(/page=(\d+).*$/)[1], 10)
-    } else {
-      return false
-    }
-  } else {
-    return false
-  }
-}
-
 export function fetchCommentsFirstSuccess(res) {
   return {
     type: types.FETCH_COMMENTS_FIRST_SUCCESS,
     comments: res.data,
-    commentsTotalPage: getTotalPage(res.headers)
+    commentsTotalPage: common.getTotalPage(res.headers)
   };
 }
 

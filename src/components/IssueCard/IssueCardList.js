@@ -3,17 +3,19 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import {Card, CardHeader, Button, Row, Col, Input} from 'reactstrap';
 
-import IssueCard from './IssueCard';
 import styles from './IssueCard.css';
+import IssueCard from './IssueCard';
 
 class IssueCardList extends React.Component {
 
   shouldComponentUpdate(nextProps, nextState) {
-    let update = JSON.stringify(this.props) !== JSON.stringify(nextProps);
-    return update;
+    return JSON.stringify(this.props) !== JSON.stringify(nextProps);
   }
 
   render() {
+    const cx = classNames.bind(styles);
+    const {issues, state, sort, direction, onClickChangeState, onClickChangeDirection, onChangeSort}
+      = this.props;
     const mapToComponents = issues => {
       return issues.map((issue) => {
         return (
@@ -31,9 +33,7 @@ class IssueCardList extends React.Component {
         )
       });
     };
-    const cx = classNames.bind(styles);
-    const {issues, state, sort, direction, onClickChangeState, onClickChangeDirection, onChangeSort}
-      = this.props;
+
     return (
       <div className={cx('box')}>
         <Card>
@@ -86,8 +86,7 @@ class IssueCardList extends React.Component {
                   size="sm"
                   onClick={onClickChangeDirection}
                 >
-                  {direction === 'desc' ?
-                    <i className="fa fa-arrow-down" />
+                  {direction === 'desc' ? <i className="fa fa-arrow-down" />
                     : <i className="fa fa-arrow-up" /> }
                 </Button>
               </Col>
@@ -96,14 +95,18 @@ class IssueCardList extends React.Component {
         </Card>
         {mapToComponents(issues)}
       </div>
-    )
-      ;
+    );
   }
 }
 
 IssueCardList.propTypes = {
   issues: PropTypes.array,
-  onClickChangeState: PropTypes.func
+  state: PropTypes.string,
+  sort: PropTypes.string,
+  direction: PropTypes.string,
+  onClickChangeDirection: PropTypes.func,
+  onClickChangeState: PropTypes.func,
+  onChangeSort: PropTypes.func
 };
 
 export default IssueCardList

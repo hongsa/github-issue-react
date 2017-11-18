@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Row, Col, Card, CardHeader, CardBody} from 'reactstrap';
-import Moment from 'react-moment';
 import classNames from 'classnames/bind';
 import ReactMarkdown from 'react-markdown';
 
 import styles from './IssueDetailBottom.css';
+import CommentTime from '../Common/CommentTime';
 
 const cx = classNames.bind(styles);
 const CommentCard = ({body, created, user}) => {
@@ -21,7 +21,7 @@ const CommentCard = ({body, created, user}) => {
         <Card>
           <CardHeader className={cx('comment-state')}>
             <span><strong>{user.login}</strong>&nbsp;commented&nbsp;</span>
-            <Moment fromNow>{created}</Moment>
+            <CommentTime time={created} />
           </CardHeader>
           <CardBody>
             <ReactMarkdown source={body} />

@@ -29,7 +29,7 @@ class Issues extends Component {
 
   componentWillReceiveProps(nextProps) {
 
-    // 인피니트 스크롤 에러 시 해당 page 다시 호출
+    // 페이지 에러 시 해당 page 다시 호출
     if (nextProps.issues.fetchDataError) {
       this.setState({
         page: nextProps.issues.page,

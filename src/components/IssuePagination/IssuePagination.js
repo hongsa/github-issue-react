@@ -5,8 +5,7 @@ import {PaginationItem, PaginationLink} from 'reactstrap';
 const IssuePagination = ({currentPage, targetPage, pageRange, pageSize, onClickChangePage}) => {
   const pageNumber = (pageRange * pageSize) + targetPage;
   return (
-    <PaginationItem
-      active={currentPage === pageNumber}>
+    <PaginationItem active={currentPage === pageNumber}>
       <PaginationLink onClick={() => {onClickChangePage(pageNumber)}}>{pageNumber}</PaginationLink>
     </PaginationItem>
   )

@@ -17,6 +17,6 @@ const NoMatch = () => {
       </Container>
     </div>
   );
-}
+};
 
 export default NoMatch;

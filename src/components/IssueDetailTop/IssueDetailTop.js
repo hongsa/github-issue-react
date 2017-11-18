@@ -2,10 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Button, Row, Col} from 'reactstrap';
 import classNames from 'classnames/bind';
-import Moment from 'react-moment';
 
 import styles from './IssueDetailTop.css';
-
+import CommentTime from '../Common/CommentTime';
 
 const cx = classNames.bind(styles);
 const IssueDetailItem = ({issue}) => {
@@ -46,7 +45,7 @@ const IssueDetailItem = ({issue}) => {
           <span>
             {currentStateIcon()}
             {user.login}&nbsp;opened&nbsp;this issue&nbsp;
-            <Moment fromNow>{created_at}</Moment>
+            <CommentTime time={created_at} />
           </span>
         <span>&nbsp;·&nbsp;{comments}&nbsp;comments</span>
       </div>
