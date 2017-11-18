@@ -20,6 +20,7 @@
 - react-spinners
 
 ### 실행방법
+- Node >= 6
 ```
 npm install
 ```
