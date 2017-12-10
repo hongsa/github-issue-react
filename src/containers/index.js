@@ -1,10 +1,5 @@
-import Issues from './Issues';
-import IssueDetail from './IssueDetail';
-import NoMatch from './NoMatch';
+import Issues from "./Issues";
+import IssueDetail from "./IssueDetail";
+import NoMatch from "./NoMatch";
 
-
-export {
-  Issues,
-  IssueDetail,
-  NoMatch
-};
+export { Issues, IssueDetail, NoMatch };

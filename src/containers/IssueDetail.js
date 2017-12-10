@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {Container} from 'reactstrap';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { Container } from "reactstrap";
 
-import * as issueDetailActions from '../actions/issueDetail';
-import {IssueDetailTop, IssueDetailBottom, Spinner} from '../components';
+import * as issueDetailActions from "../actions/issueDetail";
+import { IssueDetailTop, IssueDetailBottom, Spinner } from "../components";
 
 class IssueDetail extends Component {
   constructor(props) {
@@ -20,13 +20,12 @@ class IssueDetail extends Component {
   componentDidMount() {
     this.fetchIssueDetail().then(() => {
       this.fetchComments().then(() => {
-        this.setState({loading: false});
-      })
-    })
+        this.setState({ loading: false });
+      });
+    });
   }
 
   componentWillReceiveProps(nextProps) {
-
     // 코멘트 페이지 마지막 시
     if (nextProps.issueDetail.commentLast) {
       this.setState({
@@ -36,21 +35,27 @@ class IssueDetail extends Component {
     }
 
     // 코멘트 더 불러오기
-    if (!nextProps.issueDetail.commentLast && nextProps.issueDetail.commentsTotalPage > 1) {
-      this.setState({
-        commentLoading: true,
-        page: this.state.page + 1
-      }, () => {
-        this.fetchComments().then(() => {
-          this.setState({commentLoading: false});
-        })
-      });
+    if (
+      !nextProps.issueDetail.commentLast &&
+      nextProps.issueDetail.commentsTotalPage > 1
+    ) {
+      this.setState(
+        {
+          commentLoading: true,
+          page: this.state.page + 1
+        },
+        () => {
+          this.fetchComments().then(() => {
+            this.setState({ commentLoading: false });
+          });
+        }
+      );
     }
 
     // 코멘트 에러 시 해당 page 다시 호출
     if (nextProps.issueDetail.commentsFetchDataError) {
       this.setState({
-        page: nextProps.issueDetail.page,
+        page: nextProps.issueDetail.page
       });
     }
   }
@@ -62,33 +67,35 @@ class IssueDetail extends Component {
 
   async fetchComments() {
     const number = this.props.match.params.number;
-    const {page} = this.state;
+    const { page } = this.state;
     return await this.props.actions.fetchComments(number, page);
   }
 
   render() {
-    return (
-      this.state.loading ? <Spinner /> :
-        <div>
-          <Container>
-            <IssueDetailTop issue={this.props.issueDetail.issue} />
-            <IssueDetailBottom
-              issue={this.props.issueDetail.issue}
-              comments={this.props.issueDetail.comments} />
-          </Container>
-        </div>
+    return this.state.loading ? (
+      <Spinner />
+    ) : (
+      <div>
+        <Container>
+          <IssueDetailTop issue={this.props.issueDetail.issue} />
+          <IssueDetailBottom
+            issue={this.props.issueDetail.issue}
+            comments={this.props.issueDetail.comments}
+          />
+        </Container>
+      </div>
     );
   }
 }
 
 IssueDetail.propTypes = {
   actions: PropTypes.object.isRequired,
-  issueDetail: PropTypes.object.isRequired,
+  issueDetail: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state) {
   return {
-    issueDetail: state.issueDetail,
+    issueDetail: state.issueDetail
   };
 }
 

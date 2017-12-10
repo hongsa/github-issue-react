@@ -1,1 +1,1 @@
-export { IssueDetailTop } from './IssueDetailTop';
+export { IssueDetailTop } from "./IssueDetailTop";

@@ -1,22 +1,28 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {Pagination, PaginationItem, PaginationLink} from 'reactstrap';
-import IssuePagination from './IssuePagination';
+import React from "react";
+import PropTypes from "prop-types";
+import { Pagination, PaginationItem, PaginationLink } from "reactstrap";
+import IssuePagination from "./IssuePagination";
 
 class IssuePaginationList extends React.Component {
-
   shouldComponentUpdate(nextProps, nextState) {
     return JSON.stringify(this.props) !== JSON.stringify(nextProps);
   }
 
   render() {
-    const {currentPage, pageRange, pageSize, onClickChangePage, onClickChangePageRange, totalPage} = this.props;
+    const {
+      currentPage,
+      pageRange,
+      pageSize,
+      onClickChangePage,
+      onClickChangePageRange,
+      totalPage
+    } = this.props;
     const numberArray = [...Array(10).keys()].map(i => i + 1);
     const mapToComponents = () => {
-      return numberArray.map((targetPage) => {
-        const pageNumber = (pageRange * pageSize) + targetPage;
+      return numberArray.map(targetPage => {
+        const pageNumber = pageRange * pageSize + targetPage;
         if (totalPage < pageNumber) {
-          return false
+          return false;
         } else {
           return (
             <IssuePagination
@@ -27,7 +33,7 @@ class IssuePaginationList extends React.Component {
               pageSize={pageSize}
               onClickChangePage={onClickChangePage}
             />
-          )
+          );
         }
       });
     };
@@ -37,16 +43,12 @@ class IssuePaginationList extends React.Component {
         <PaginationItem disabled={pageRange === 0}>
           <PaginationLink
             previous
-            onClick={() => onClickChangePageRange('prev')}>
-          </PaginationLink>
+            onClick={() => onClickChangePageRange("prev")}
+          />
         </PaginationItem>
         {mapToComponents()}
-        <PaginationItem
-          disabled={(pageRange + 1) * pageSize >= totalPage}>
-          <PaginationLink
-            next
-            onClick={() => onClickChangePageRange('next')}>
-          </PaginationLink>
+        <PaginationItem disabled={(pageRange + 1) * pageSize >= totalPage}>
+          <PaginationLink next onClick={() => onClickChangePageRange("next")} />
         </PaginationItem>
       </Pagination>
     );
@@ -62,4 +64,4 @@ IssuePaginationList.propTypes = {
   onClickChangePageRange: PropTypes.func
 };
 
-export default IssuePaginationList
+export default IssuePaginationList;

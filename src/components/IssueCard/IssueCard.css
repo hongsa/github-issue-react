@@ -1,38 +1,38 @@
 .box {
-    margin-top: 20px;
-    margin-bottom: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .card {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .card:hover {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .title {
-    color: black;
-    font-weight: bold;
-    margin-right: 5px;
+  color: black;
+  font-weight: bold;
+  margin-right: 5px;
 }
 
 .title:hover {
-    color: #0366d6;
-    font-weight: bold;
+  color: #0366d6;
+  font-weight: bold;
 }
 
 .comment {
-    color: #586069;
-    font-size: 13px;
+  color: #586069;
+  font-size: 13px;
 }
 
 .state-text {
-    color: #586069;
-    font-size: 13px;
-    padding: 3px;
+  color: #586069;
+  font-size: 13px;
+  padding: 3px;
 }
 
 .btn-state {
-    margin: 3px;
+  margin: 3px;
 }

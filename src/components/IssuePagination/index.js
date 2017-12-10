@@ -1,1 +1,1 @@
-export { IssuePaginationList } from './IssuePaginationList'
+export { IssuePaginationList } from "./IssuePaginationList";

@@ -1,7 +1,7 @@
-import * as types from '../actions/actionTypes';
-import initialState from './initialState';
+import * as types from "../actions/actionTypes";
+import initialState from "./initialState";
 
-export default function (state = initialState.issues, action) {
+export default function(state = initialState.issues, action) {
   switch (action.type) {
     case types.FETCH_ISSUES_SUCCESS:
       return {
@@ -14,7 +14,7 @@ export default function (state = initialState.issues, action) {
         issues: state.issues,
         page: action.page,
         filters: state.filters,
-        fetchDataError: true,
+        fetchDataError: true
       };
     case types.SELECT_ISSUE_FILTER_SUCCESS:
       return {

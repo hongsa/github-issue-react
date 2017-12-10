@@ -1,26 +1,29 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {Row, Col, Card, CardHeader, CardBody} from 'reactstrap';
-import classNames from 'classnames/bind';
-import ReactMarkdown from 'react-markdown';
+import React from "react";
+import PropTypes from "prop-types";
+import { Row, Col, Card, CardHeader, CardBody } from "reactstrap";
+import classNames from "classnames/bind";
+import ReactMarkdown from "react-markdown";
 
-import styles from './IssueDetailBottom.css';
-import CommentTime from '../Common/CommentTime';
+import styles from "./IssueDetailBottom.css";
+import CommentTime from "../Common/CommentTime";
 
 const cx = classNames.bind(styles);
-const CommentCard = ({body, created, user}) => {
+const CommentCard = ({ body, created, user }) => {
   return (
-    <Row className={cx('box')}>
+    <Row className={cx("box")}>
       <Col sm="1">
         <img
-          className={cx('avatar-img')}
+          className={cx("avatar-img")}
           src={user.avatar_url}
-          alt={user.login} />
+          alt={user.login}
+        />
       </Col>
       <Col sm="11">
         <Card>
-          <CardHeader className={cx('comment-state')}>
-            <span><strong>{user.login}</strong>&nbsp;commented&nbsp;</span>
+          <CardHeader className={cx("comment-state")}>
+            <span>
+              <strong>{user.login}</strong>&nbsp;commented&nbsp;
+            </span>
             <CommentTime time={created} />
           </CardHeader>
           <CardBody>
@@ -29,7 +32,7 @@ const CommentCard = ({body, created, user}) => {
         </Card>
       </Col>
     </Row>
-  )
+  );
 };
 
 CommentCard.propTypes = {
@@ -38,4 +41,4 @@ CommentCard.propTypes = {
   user: PropTypes.object
 };
 
-export default CommentCard
+export default CommentCard;

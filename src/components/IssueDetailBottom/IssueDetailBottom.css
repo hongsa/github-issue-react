@@ -1,45 +1,45 @@
 .box {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .avatar-img {
-    height: auto;
-    max-width: 100%;
+  height: auto;
+  max-width: 100%;
 }
 
 .comment-state {
-    color: #586069;
-    font-size: 15px;
+  color: #586069;
+  font-size: 15px;
 }
 
 .label-box {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 .item-box {
-    border-bottom: 1px solid #e6ebf1;
-    margin-bottom: 20px;
+  border-bottom: 1px solid #e6ebf1;
+  margin-bottom: 20px;
 }
 
 .item {
-    font-size: 12px;
-    color: #586069;
-    margin-bottom: 10px;
+  font-size: 12px;
+  color: #586069;
+  margin-bottom: 10px;
 }
 
 p {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 pre {
-    font-size: 13px;
-    background-color: #f6f8fa;
-    padding: 16px;
-    line-height: 1.45;
-    overflow: auto;
+  font-size: 13px;
+  background-color: #f6f8fa;
+  padding: 16px;
+  line-height: 1.45;
+  overflow: auto;
 }
 
 img {
-    max-width: 100%;
-    max-height: 100%;
+  max-width: 100%;
+  max-height: 100%;
 }

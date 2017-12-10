@@ -1,7 +1,7 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 
-import issues from './issues';
-import issueDetail from './issueDetail';
+import issues from "./issues";
+import issueDetail from "./issueDetail";
 
 const rootReducer = combineReducers({
   issues,

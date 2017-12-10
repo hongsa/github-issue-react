@@ -1,7 +1,7 @@
-import * as types from '../actions/actionTypes';
-import initialState from './initialState';
+import * as types from "../actions/actionTypes";
+import initialState from "./initialState";
 
-export default function (state = initialState.issueDetail, action) {
+export default function(state = initialState.issueDetail, action) {
   switch (action.type) {
     case types.FETCH_ISSUE_DETAIL_SUCCESS:
       return {
@@ -14,19 +14,21 @@ export default function (state = initialState.issueDetail, action) {
         issue: state.issue,
         comments: state.comments,
         commentsTotalPage: state.commentsTotalPage,
-        fetchDataError: true,
+        fetchDataError: true
       };
     case types.FETCH_COMMENTS_FIRST_SUCCESS:
       return {
         issue: state.issue,
         comments: action.comments,
-        commentsTotalPage: action.commentsTotalPage ? action.commentsTotalPage : state.commentsTotalPage
+        commentsTotalPage: action.commentsTotalPage
+          ? action.commentsTotalPage
+          : state.commentsTotalPage
       };
     case types.FETCH_COMMENTS_CONTINUE_SUCCESS:
       return {
         issue: state.issue,
         comments: state.comments.concat(action.comments),
-        commentsTotalPage: state.commentsTotalPage,
+        commentsTotalPage: state.commentsTotalPage
       };
     case types.FETCH_COMMENTS_LAST_SUCCESS:
       return {

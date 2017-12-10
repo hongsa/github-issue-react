@@ -1,24 +1,33 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {Row, Col, Card, CardBody} from 'reactstrap';
-import {Link} from 'react-router-dom'
-import classNames from 'classnames/bind';
+import React from "react";
+import PropTypes from "prop-types";
+import { Row, Col, Card, CardBody } from "reactstrap";
+import { Link } from "react-router-dom";
+import classNames from "classnames/bind";
 
-import styles from './IssueCard.css';
-import LabelList from './LabelList';
-import CommentTime from '../Common/CommentTime';
+import styles from "./IssueCard.css";
+import LabelList from "./LabelList";
+import CommentTime from "../Common/CommentTime";
 
 const cx = classNames.bind(styles);
-const IssueCard = ({title, number, commentCount, userName, created, labels, state, closed}) => {
+const IssueCard = ({
+  title,
+  number,
+  commentCount,
+  userName,
+  created,
+  labels,
+  state,
+  closed
+}) => {
   const currentStateText = () => {
-    if (state === 'open') {
+    if (state === "open") {
       return (
         <div>
           #{number}&nbsp;{state}ed&nbsp;
           <CommentTime time={created} />
           &nbsp;by&nbsp;{userName}
         </div>
-      )
+      );
     } else {
       return (
         <div>
@@ -26,19 +35,25 @@ const IssueCard = ({title, number, commentCount, userName, created, labels, stat
           &nbsp;was&nbsp;{state}&nbsp;
           <CommentTime time={closed} />
         </div>
-      )
+      );
     }
   };
 
   const currentStateIcon = () => {
-    if (state === 'open') {
+    if (state === "open") {
       return (
-        <i className="fa fa-check-circle-o fa-lg" style={{color: '#28a745', padding: '3px'}} />
-      )
+        <i
+          className="fa fa-check-circle-o fa-lg"
+          style={{ color: "#28a745", padding: "3px" }}
+        />
+      );
     } else {
       return (
-        <i className="fa fa-ban fa-lg" style={{color: '#cb2431', padding: '3px'}} />
-      )
+        <i
+          className="fa fa-ban fa-lg"
+          style={{ color: "#cb2431", padding: "3px" }}
+        />
+      );
     }
   };
 
@@ -47,28 +62,24 @@ const IssueCard = ({title, number, commentCount, userName, created, labels, stat
       <CardBody>
         <Row>
           <Col sm="10" xs="9" className="text-left">
-            <Link to={`/issue/${number}`} className={cx('card')}>
+            <Link to={`/issue/${number}`} className={cx("card")}>
               {currentStateIcon()}
-              <span className={cx('title')}>
-                {title}
-              </span>
+              <span className={cx("title")}>{title}</span>
             </Link>
             <LabelList labels={labels} />
           </Col>
           <Col sm="2" xs="3" className="text-right">
-            <div className={cx('comment')}>
+            <div className={cx("comment")}>
               <i className="fa fa-comment-o fa-lg" />&nbsp;{commentCount}
             </div>
           </Col>
         </Row>
-        <Row className={cx('state-text')}>
-          <Col className="text-left">
-            {currentStateText()}
-          </Col>
+        <Row className={cx("state-text")}>
+          <Col className="text-left">{currentStateText()}</Col>
         </Row>
       </CardBody>
     </Card>
-  )
+  );
 };
 
 IssueCard.propTypes = {
@@ -79,7 +90,7 @@ IssueCard.propTypes = {
   created: PropTypes.string,
   labels: PropTypes.array,
   state: PropTypes.string,
-  closed: PropTypes.string,
+  closed: PropTypes.string
 };
 
-export default IssueCard
+export default IssueCard;

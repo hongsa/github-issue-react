@@ -1,23 +1,29 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames/bind';
-import {Card, CardHeader, Button, Row, Col, Input} from 'reactstrap';
+import React from "react";
+import PropTypes from "prop-types";
+import classNames from "classnames/bind";
+import { Card, CardHeader, Button, Row, Col, Input } from "reactstrap";
 
-import styles from './IssueCard.css';
-import IssueCard from './IssueCard';
+import styles from "./IssueCard.css";
+import IssueCard from "./IssueCard";
 
 class IssueCardList extends React.Component {
-
   shouldComponentUpdate(nextProps, nextState) {
     return JSON.stringify(this.props) !== JSON.stringify(nextProps);
   }
 
   render() {
     const cx = classNames.bind(styles);
-    const {issues, state, sort, direction, onClickChangeState, onClickChangeDirection, onChangeSort}
-      = this.props;
-    const mapToComponents = issues => {
-      return issues.map((issue) => {
+    const {
+      issues,
+      state,
+      sort,
+      direction,
+      onClickChangeState,
+      onClickChangeDirection,
+      onChangeSort
+    } = this.props;
+    const mapToComponents = () => {
+      return issues.map(issue => {
         return (
           <IssueCard
             key={issue.id}
@@ -30,41 +36,44 @@ class IssueCardList extends React.Component {
             state={issue.state}
             closed={issue.closed_at}
           />
-        )
+        );
       });
     };
 
     return (
-      <div className={cx('box')}>
+      <div className={cx("box")}>
         <Card>
           <CardHeader>
             <Row>
               <Col sm="8" xs="6">
                 <Button
-                  className={cx('btn-state')}
-                  active={state === 'open'}
+                  className={cx("btn-state")}
+                  active={state === "open"}
                   outline
                   color="secondary"
                   size="sm"
-                  onClick={() => onClickChangeState('open')}>
+                  onClick={() => onClickChangeState("open")}
+                >
                   Open
                 </Button>
                 <Button
-                  className={cx('btn-state')}
-                  active={state === 'closed'}
+                  className={cx("btn-state")}
+                  active={state === "closed"}
                   outline
                   color="secondary"
                   size="sm"
-                  onClick={() => onClickChangeState('closed')}>
+                  onClick={() => onClickChangeState("closed")}
+                >
                   Closed
                 </Button>
                 <Button
-                  className={cx('btn-state')}
-                  active={state === 'all'}
+                  className={cx("btn-state")}
+                  active={state === "all"}
                   outline
                   color="secondary"
                   size="sm"
-                  onClick={() => onClickChangeState('all')}>
+                  onClick={() => onClickChangeState("all")}
+                >
                   All
                 </Button>
               </Col>
@@ -86,14 +95,17 @@ class IssueCardList extends React.Component {
                   size="sm"
                   onClick={onClickChangeDirection}
                 >
-                  {direction === 'desc' ? <i className="fa fa-arrow-down" />
-                    : <i className="fa fa-arrow-up" /> }
+                  {direction === "desc" ? (
+                    <i className="fa fa-arrow-down" />
+                  ) : (
+                    <i className="fa fa-arrow-up" />
+                  )}
                 </Button>
               </Col>
             </Row>
           </CardHeader>
         </Card>
-        {mapToComponents(issues)}
+        {mapToComponents()}
       </div>
     );
   }
@@ -109,4 +121,4 @@ IssueCardList.propTypes = {
   onChangeSort: PropTypes.func
 };
 
-export default IssueCardList
+export default IssueCardList;

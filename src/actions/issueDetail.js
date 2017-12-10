@@ -1,13 +1,13 @@
-import axios from 'axios';
+import axios from "axios";
 
-import * as types from './actionTypes';
-import * as api from '../lib/api';
-import * as common from './common';
+import * as types from "./actionTypes";
+import * as api from "../lib/api";
+import * as common from "./common";
 
 export function fetchIssueDetailSuccess(res) {
   return {
     type: types.FETCH_ISSUE_DETAIL_SUCCESS,
-    issue: res.data,
+    issue: res.data
   };
 }
 
@@ -18,10 +18,11 @@ export function fetchIssueDetailFailure() {
 }
 
 export function fetchIssueDetail(number) {
-  return function (dispatch) {
-    return axios.get(`${api.BACKEND_URL}/${number}`)
+  return function(dispatch) {
+    return axios
+      .get(`${api.BACKEND_URL}/${number}`)
       .then(res => {
-        dispatch(fetchIssueDetailSuccess(res))
+        dispatch(fetchIssueDetailSuccess(res));
       })
       .catch(() => {
         dispatch(fetchIssueDetailFailure());
@@ -40,7 +41,7 @@ export function fetchCommentsFirstSuccess(res) {
 export function fetchCommentsContinueSuccess(res) {
   return {
     type: types.FETCH_COMMENTS_CONTINUE_SUCCESS,
-    comments: res.data,
+    comments: res.data
   };
 }
 
@@ -58,11 +59,12 @@ export function fetchCommentsFailure(page) {
 }
 
 export function fetchComments(number, page) {
-  return function (dispatch) {
-    return axios.get(`${api.BACKEND_URL}/${number}/comments?page=${page}`)
+  return function(dispatch) {
+    return axios
+      .get(`${api.BACKEND_URL}/${number}/comments?page=${page}`)
       .then(res => {
         if (page === 1) {
-          dispatch(fetchCommentsFirstSuccess(res))
+          dispatch(fetchCommentsFirstSuccess(res));
         } else {
           if (res.data.length !== 0) {
             dispatch(fetchCommentsContinueSuccess(res));
