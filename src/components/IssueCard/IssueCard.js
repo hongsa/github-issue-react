@@ -64,7 +64,9 @@ const IssueCard = ({
           <Col sm="10" xs="9" className="text-left">
             <Link to={`/issue/${number}`} className={cx("card")}>
               {currentStateIcon()}
-              <span className={cx("title")}>{title}</span>
+              <span className={classNames(styles.title, "text-warning")}>
+                {title}
+              </span>
             </Link>
             <LabelList labels={labels} />
           </Col>
